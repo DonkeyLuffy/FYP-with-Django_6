@@ -1,0 +1,40 @@
+.navbar{
+    padding: 0;
+    background-color: rgba(251, 238, 193, 90%);
+    border-bottom: 5px solid rgb(141, 135, 65);
+    /* background-color: #BC986A; */
+}
+
+.body{
+    background-color: #659DBD;
+    
+}
+.log_content{
+    background-color: rgba(251, 238, 193, 90%);
+    border: 5px solid rgb(141, 135, 65);
+    border-radius: 10px;
+    box-shadow: rgb(141, 135, 65) 0px 5px 15px;
+}
+
+.login-body{
+    background-image: url('/static/images/fyp-background.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    font-size: large;
+    font-weight: 500;
+}
+
+.button_content{
+    width: 120%;
+    border: 5px solid #BC986A;
+    background-color: rgb(218, 173, 134);
+}
+
+.profile_content{
+    background-color: rgba(251, 238, 193, 90%);
+    border: 5px solid rgb(141, 135, 65);
+    border-radius: 10px;
+    box-shadow: #82afc9 0px 5px 15px;
+}

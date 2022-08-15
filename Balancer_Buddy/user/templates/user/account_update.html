@@ -1,0 +1,42 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block content %}
+<body class="body">
+    {% include 'user/navbar.html' %}
+
+    <div class="container ">
+        <div class="row my-2 d-flex flex-row  justify-content-center">
+            <div class="col-7 text-center profile_content">
+                <h2><b>Update Account</b></h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row my-5 d-flex flex-row  justify-content-center">
+            <div class="col-6 profile_content p-5">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="mb-2 row form-group text-center">
+                        <div class="input-group"><label for="id_email" class="m-2"><h5>Email Adress: </h5></label>{{form.email}} <div class="col-1"></div></div>
+                    </div>
+            
+                    <div class="mb-2 row form-group text-center">
+                        <div class="input-group"> <label for="id_first_name" class="m-2"><h5>First name:</h5></label>{{form.first_name}} <div class="col-1"></div></div>
+                    </div>
+            
+                    <div class="mb-2 row form-group text-center">
+                        <div class="input-group"><label for="id_last_name" class="m-2"><h5>Last name:</h5></label>{{form.last_name}} <div class="col-1"></div></div>
+                    </div>
+                    <div class="mb-2 row form-group">
+                        <div class="col-5"></div>
+                        <input type="submit" value="Update" class="btn btn-primary border border-dark col-2">
+                        <div class="col-5"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock %}

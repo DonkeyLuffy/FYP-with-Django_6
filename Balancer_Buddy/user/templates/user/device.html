@@ -1,0 +1,62 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block content %}
+<body class="body">
+    {% include 'user/navbar.html' %}
+    <div class="container profile_content mt-2">
+        <div class="row mt-2 rounded color">
+            <div class="col-1 p-2 ">
+                <a href="{% url 'user:home_page' %}" class="btn btn-lg btn-warning">Back</a>
+            </div>
+            <div class="col-10 d-flex justify-content-center">
+                <h1><u>Profile Information</u></h1>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+
+    <div class="row d-flex flex-row justify-content-center mx-0">
+        <div class=" col-2 my-2 profile_content p-2">
+            <h1>Heel</h1>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row card card-body">
+            <table class="table table-md h5">
+                <tr class="text-center">
+                    <h1>Datalog</h1>
+                    <h3>Entry Count: {{count}}</h3>
+                </tr>
+                <tr>
+                    <th>Heel</th>
+                    <th>Big Toe</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th></th>
+                </tr>
+                {% for data in datas %}
+                <tr>
+                    <td>{{ data.heel}}</td>
+                    <td>{{ data.bigtoe}}</td>
+                    <td>{{ data.date}}</td>
+                    <td>{{ data.time |date:"g:i:s a"}}</td>
+                    <td><a href="" class="btn btn-danger">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+</body>
+{% endblock %}

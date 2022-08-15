@@ -1,0 +1,66 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block content %}
+<body class="body">
+    {% include 'user/navbar.html' %}
+    <div class="row mx-0 ">
+        <div class="col-1 my-4">
+            <a href="{% url 'user:home_page' %}" class="btn btn-lg btn-warning border border-dark">Back Home</a>
+        </div>
+        <div class="col-11 profile_content my-4" style="width: fit-content;">
+            <div class="row text-center">
+                <h1><u>Search Content</u></h1>
+            </div>
+            <div class="row p-2" style="font-weight: 500;">
+                <form action="" method="get">
+                    {% csrf_token %}
+                    {{profileFilter.form}}
+                    <button type="submit" class="btn btn-success border border-dark" style="color: black;"><i class="bi bi-search"></i></button>
+                    <a accesskey="backspace" type="reset" class="btn btn-danger border border-dark" style="color: black;"href="{% url 'user:profiles' %}"><i class="bi bi-arrow-counterclockwise"></i></i></a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- <a href="{% url 'user:home_page' %}" class="btn btn-lg btn-warning border border-dark">Back Home</a>
+    <form action="" method="get">
+        {% csrf_token %}
+        {{profileFilter.form}}
+        <button type="submit" class="btn btn-success border border-dark" style="color: black;"><i class="bi bi-search"></i></button>
+        <a class="btn btn-danger border border-dark" style="color: black;"href="{% url 'user:profiles' %}"><i class="bi bi-arrow-counterclockwise"></i></i></a>
+    </form> -->
+
+
+    
+
+    <div class="container ">
+        <div class="row mt-3 " id="profile-table">
+            <div class="card card-body" style="border: 5px solid rgb(141, 135, 65);">
+                <table class="table table-md h5">
+                    <tr class="text-center">
+                        <th>Email</th>
+                        <th> Name(First Name, Last Name)</th>
+                        <th>Age</th>
+                        <th>Weight</th>
+                        <th>Shoe Size</th>
+                    </tr>
+
+                    {%for profile in profiles %}
+                    
+                    <tr class="text-center">
+                        <td>{{profile.user}}</td>
+                        <td>{{profile.user.get_full_name}}</td>
+                        <td>{{profile.age}}</td>
+                        <td>{{profile.weight}} Kg</td>
+                        <td>{{profile.shoe_size}} ({{profile.size_type}}) </td>
+                        <td><a href="{% url 'user:profile_detail' profile.id %}" class="btn btn-primary border border-dark">View</a></td>
+                    </tr>
+                    {%endfor%}
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+{% endblock %}

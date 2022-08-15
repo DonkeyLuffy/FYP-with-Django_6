@@ -1,0 +1,32 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block content %}
+<body class="body">
+    {% include 'user/navbar.html' %}
+    <div class="row mx-0 my-3 d-flex flex-row justify-content-center">
+        <div class="col-1 my-3">
+            <a href="{% url 'user:home_page' %}" class="btn btn-lg btn-warning border border-dark">Back Home</a>
+        </div>
+
+        <div class="col-5 profile_content">
+            <div class="row text-center my-3">
+                <h1><u>User Account Info</u></h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mx-0 d-flex flex-row justify-content-center ">
+        <div class="col-3 p-3 profile_content">
+            <h4 class="py-1">Name: {{user.get_full_name}}</h4>
+            <h4 class="py-1">Email: {{user.email}}</h4>
+            <h4 class="py-1">Date Joined: {{user.date_joined}}</h4>
+            <div class="flex-row d-flex justify-content-around py-4">
+                <a href="{% url 'user:account_update' %}" class="btn btn-lg btn-info border border-dark">Update Info</a>
+                <a href="{% url 'user:change_password' %}" class="btn btn-lg btn-primary border border-dark">Reset Password</a>
+            </div>
+            
+        </div>
+    </div>
+</body>
+
+{% endblock %}

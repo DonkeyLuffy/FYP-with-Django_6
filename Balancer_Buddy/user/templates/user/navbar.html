@@ -1,0 +1,27 @@
+<nav class="navbar navbar-light navbar-expand-md d-flex flex-row justify-content-between">
+  {% load static%}
+  <div class="p-2" id="navbar-logo">
+    <span class="h1">
+      <img src="{% static '/images/foot-cartoon.png' %}" alt="" width="45" height="45">
+      Balancer Buddy
+    </span>
+  </div>
+
+  <div>
+    {% for message in messages%}
+    <h3 style="background-color: #8D8741; color: antiquewhite;" class="p-2">{{message}}</h3>
+    {% endfor %}
+  </div>
+
+
+
+  <div id="logout_btn" class="p-1" data-toggle="tooltip" >
+    <a 
+    class="btn btn-lg btn-danger border border-dark" 
+    tyle="color: black;"href="{% url 'user:logout' %}" 
+    data-toggle="tooltip" data-placement="left" 
+    title="Logout">
+    <i class="bi bi-box-arrow-left h2"></i>
+    </a>
+  </div>
+</nav>

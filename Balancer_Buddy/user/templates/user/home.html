@@ -1,0 +1,37 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block content %}
+<body class="login-body">
+    {% include 'user/navbar.html' %}
+    <div class="container">
+        <div class="row mt-3 d-flex flex-row justify-content-center">
+
+
+
+            {% if permission %}
+            <div class="col-2 mx-3">
+                <a href="{% url 'user:profiles' %}" class="btn px-5 py-3  button_content btn btn-warning" ><h1>Profiles</h1></a>
+            </div>
+            <div class="col-2 mx-3">
+                <a href="{% url 'user:admin_data' %}" class="btn px-5 py-3  button_content btn btn-warning" ><h1>Data</h1></a>
+            </div>
+            {% else %}
+            <div class="col-2 mx-3">
+                <a href="{% url 'user:device_page'  %}" class="btn btn-px-5 py-3  button_content btn btn-warning"><h1>Device</h1></a>
+            </div>
+            <div class="col-2 mx-3">
+                <a href="{% url 'user:data' %}" class="btn px-5 py-3  button_content btn btn-warning" ><h1>Data</h1></a>
+            </div>
+            <div class="col-2 mx-3">
+                <a href="{% url 'user:profile_detail' request.user.id %}" class="btn px-5 py-3  button_content btn btn-warning" ><h1>Profile</h1></a>
+            </div>
+            {% endif %}
+            <div class="col-2 mx-3">
+                <a href="{% url 'user:account_page' %}" class="btn px-5 py-3  button_content btn btn-warning" ><h1>Acount</h1></a>
+            </div>
+
+        </div>
+    </div>
+</body>
+{% endblock content%}
+

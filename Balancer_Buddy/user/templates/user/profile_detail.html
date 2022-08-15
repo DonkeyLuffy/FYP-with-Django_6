@@ -1,0 +1,56 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block content %}
+<body class="body">
+    {% include 'user/navbar.html' %}
+    {% if request.user.is_staff %}
+    <div class="container profile_content mt-2">
+        <div class="row mt-2 rounded color">
+            <div class="col-1 p-2 ">
+                <a href="{% url 'user:profiles' %}" class="btn btn-lg btn-warning">Back</a>
+            </div>
+            <div class="col-10 d-flex justify-content-center">
+                <h1><u>Profile Information</u></h1>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+    {%else%}
+    <div class="container profile_content mt-2">
+        <div class="row mt-2 rounded color">
+            <div class="col-1 p-2 ">
+                <a href="{% url 'user:home_page' %}" class="btn btn-lg btn-warning">Back</a>
+            </div>
+            <div class="col-10 d-flex justify-content-center">
+                <h1><u>Profile Information</u></h1>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="container mt-4 d-flex flex-row justify-content-center">
+        <div class="row ">
+            <div class="col-12 p-4 profile_content">
+                <div class="p-2" >
+                    <h3 class="p-2">Name: <u>{{profile.user.first_name}} {{profile.user.last_name}}</u></h3>
+                    <h3 class="p-2">Email: <u>{{user.email}}</u></h3>
+                    <h3 class="p-2">Date Joined: <u>{{user.date_joined}}</u></h3>
+                    <h3 class="p-2">Adress: <u>{{profile.adress}}</u></h3>
+                    <h3 class="p-2">Date of Birth: <u>{{profile.birth_date}}</u></h3>
+                    <h3 class="p-2">Age: <u>{{profile.phone_number}}</u></h3>
+                    <h3 class="p-2">Weight: <u>{{profile.weight}}</u>kg</h3>
+                    <h3 class="p-2">Shoe Size: <u>{{profile.shoe_size}}</u> {{profile.size_type}} </h3>
+                    <div class="d-flex flex-row justify-content-center">
+                        <div class="mt-3">
+                            <a href="{% url 'user:profile_update' request.user.id %}" class="btn btn-primary border border-dark">Update</a>
+                        </div> 
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+{% endblock %}

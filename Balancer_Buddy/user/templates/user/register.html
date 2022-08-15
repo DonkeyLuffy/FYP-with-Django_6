@@ -1,0 +1,27 @@
+{% extends 'user/base.html' %}
+{% block content %}
+<body class="login-body">
+  <div class="container mt-1">
+    <div class="row">
+        <div style="color: rgb(0, 0, 0);" class="mb-3 p-3 d-flex flex-row justify-content-center log_content">
+            <h1>Balancer Buddy: User Registration</h1>
+        </div>
+    </div>
+
+    <div class="row d-flex flex-row justify-content-center">
+
+        <form action="" method="post" class="col-5 log_content p-5 mb-5">
+            {% csrf_token %}
+            {{form.as_p}}
+            {{form.errors}}
+            <input type="submit" class="btn btn-primary" value="Register" />
+            <div class="links mt-5">
+                Already have an account? <a href="{% url 'user:login_page' %}" target="_blankclass="">Login</a>
+            </div>
+        </form>
+    </div>
+    
+  </div>
+</body>
+
+{% endblock content%}

@@ -1,0 +1,120 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block content %}
+<body class="body">
+  {% include 'user/navbar.html' %}
+  <div class="container">
+    <div class="row mt-2 rounded d-flex flex-row justify-content-center" style="margin: auto;">
+        <div class="col-7 profile_content text-center py-2">
+            <h1><u>Profile Update</u></h1>
+        </div>
+    </div>
+</div>
+
+<div>
+  <div class="container mt-5 d-flex flex-row justify-content-center">
+    <div class="row">
+      <div class="col-12 profile_content p-5">
+        <div class="row">
+          <div style="color: rgb(0, 0, 0);">
+            <h1>Balancer Buddy: Profile Registration</h1>
+          </div>
+        </div>
+        <hr>
+        <form action="" method="post">
+            {% csrf_token %}
+            
+            {{form.user}}
+          <div class="mb-2 row form-group text-end">
+            <div class="input-group"><label for="id_adress" class="col-4 col-form-label m-0 p-1"><h5>Adress: </h5></label>{{form.adress}} <div class="col-1"></div></div>
+          </div>
+
+          <div class="mb-2 row form-group text-end">
+            <div class="input-group"><label for="id_birth_date" class="col-4 col-form-label m-0 p-1"><h5>Date of Birth: </h5></label>{{form.birth_date}} <div class="col-5"></div></div>
+          </div>
+
+          <div class="mb-2 row form-group text-end">
+            <div class="input-group"><label for="phone_number" class="col-4 col-form-label m-0 p-1"><h4>Phone Number: </h4></label>{{form.phone_number}} <div class="col-5"></div></div>
+          </div>
+
+          <div class="mb-2 row form-group text-end">
+            <div class="col-6 m-0 input-group">
+              <label for="id_weight" class="col-4 col-form-label m-0 p-1"><h5>Current Weight: </h5></label>{{form.weight}}{{form.weight_type}} <div class="col-5"></div>
+            </div>
+          </div>
+
+          <div class="mb-2 row form-group text-end">
+            <div class="col-6 m-0 input-group">
+              <label for="id_weight" class="col-4 col-form-label m-0 p-1"><h5>Shoe Size: </h5></label>{{form.shoe_size}}{{form.size_type}} <div class="col-3"></div>
+            </div>
+          </div>
+          
+          <h4 style="background-color: red;">{{form.errors}}</h4>
+
+          <div class="mb-2 row form-group">
+            <div class="col-5"></div>
+            <input type="submit" value="Register" class="btn btn-primary border border-dark col-2">
+            <div class="col-5"></div>
+        </div>
+        {% if birthday %}
+          <h4 style="background-color: red;">Date of Birth cannot be today</h4>
+        {% endif %}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+
+</body>
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-6 p-5">
+      <div class="row">
+        <div style="color: rgb(0, 0, 0);">
+          <h1>Balancer Buddy: Profile Registration</h1>
+        </div>
+      </div>
+      <hr>
+      <form action="" method="post">
+          {% csrf_token %}
+          
+          {{form.user}}
+        <div class="mb-2 row form-group text-end">
+          <div class="input-group"><label for="id_adress" class="col-4 col-form-label m-0 p-1"><h5>Adress: </h5></label>{{form.adress}} <div class="col-1"></div></div>
+        </div>
+
+        <div class="mb-2 row form-group text-end">
+          <div class="input-group"><label for="id_birth_date" class="col-4 col-form-label m-0 p-1"><h5>Date of Birth: </h5></label>{{form.birth_date}} <div class="col-5"></div></div>
+        </div>
+
+        <div class="mb-2 row form-group text-end">
+          <div class="input-group"><label for="phone_number" class="col-4 col-form-label m-0 p-1"><h4>Phone Number: </h4></label>{{form.phone_number}} <div class="col-5"></div></div>
+        </div>
+
+        <div class="mb-2 row form-group text-end">
+          <div class="col-6 m-0 input-group">
+            <label for="id_weight" class="col-4 col-form-label m-0 p-1"><h5>Current Weight: </h5></label>{{form.weight}}{{form.weight_type}} <div class="col-5"></div>
+          </div>
+        </div>
+
+        <div class="mb-2 row form-group text-end">
+          <div class="col-6 m-0 input-group">
+            <label for="id_weight" class="col-4 col-form-label m-0 p-1"><h5>Shoe Size: </h5></label>{{form.shoe_size}}{{form.size_type}} <div class="col-3"></div>
+          </div>
+        </div>
+
+        <div class="mb-2 row form-group">
+          <div class="col-5"></div>
+          <input type="submit" value="Register" class="btn btn-primary border border-dark col-2">
+          <div class="col-5"></div>
+      </div>
+        
+      </form>
+    </div>
+  </div>
+</div>
+</div> -->
+
+
+{% endblock %}
