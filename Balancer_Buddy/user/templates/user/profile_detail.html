@@ -43,7 +43,7 @@
                     <h3 class="p-2">Shoe Size: <u>{{profile.shoe_size}}</u> {{profile.size_type}} </h3>
                     <div class="d-flex flex-row justify-content-center">
                         <div class="mt-3">
-                            <a href="{% url 'user:profile_update' request.user.id %}" class="btn btn-primary border border-dark">Update</a>
+                            <a href="{% url 'user:profile_update' profile.user_id %}" class="btn btn-primary border border-dark">Update</a>
                         </div> 
                     </div>
                     

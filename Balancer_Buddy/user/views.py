@@ -144,7 +144,7 @@ def profile_update_page(request, pk):
 
 @login_required(login_url='user:login_page')
 def profile_detail(request,pk):
-    profile = Profile.objects.get(user_id=pk)
+    profile = Profile.objects.get(pk=pk)
     profileform = ProfileRegisteForm(instance=request.user)
 
     context = {'form': profileform, 'profile':profile}
