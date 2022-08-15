@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from .models import *
 # forms
 from .forms import *
-from django.contrib.auth.forms import PasswordChangeForm, UserChangeForm
+from django.contrib.auth.forms import PasswordChangeForm
 # filter
 from .filters import *
 # messages
@@ -17,8 +17,7 @@ from django.contrib.auth import authenticate, logout
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 # decorators
-from .decorators import unauthenticated_user, allowed_user, admin_only
-
+from .decorators import unauthenticated_user, allowed_user
 # Create your views here.
 
 @unauthenticated_user
@@ -75,8 +74,9 @@ def login_page(request):
                 return redirect('user:home_page')
             
         elif user is not None and user in group2:
-                messages.success(request,  'Successfully logged in.')
-                return redirect('user:home_page')
+            auth_login(request, user)
+            messages.success(request,  'Successfully logged in.')
+            return redirect('user:home_page')
             
         else:
             messages.info(request, 'Username OR password is incorrect')
@@ -108,6 +108,7 @@ def home_page(request):
         permission = True
     context = {'user': user, 'permission': permission,}
     return render(request, 'user/home.html', context)
+
 
 def logoutUser(request):
     logout(request)
@@ -197,7 +198,7 @@ def device_page(request):
     return render(request, 'user/device.html', context)
 
 def data_page(request):
-    datas = DeviceData.objects.filter(date=today).filter(user_id=request.user.id)
+    datas = DeviceData.objects.filter(user_id=request.user.id)
     print()
     datafilter = DeviceDataFilter(request.GET, queryset=datas)
     datas = datafilter.qs
@@ -256,11 +257,21 @@ def data_page(request):
                 }
     return render(request, 'user/data.html', context)
 
-def data_delete(request, pk):
-    pass
-
 def admin_data(request):
-    datas = DeviceData.objects.all()
+    profiles = Profile.objects.all()
+    users = CustomUser.objects.all()
+
+    profileFilter = ProfileFilter(request.GET, queryset=profiles)
+    profiles = profileFilter.qs 
+    context = {'profiles': profiles, 'users': users,'profileFilter':profileFilter}
+    return render(request, 'user/admin_data.html', context)
+    
+
+
+
+def admin_data_detail(request, pk):
+    datas = DeviceData.objects.filter(user_id=pk)
+    profile = Profile.objects.get(user_id=pk)
     datafilter = AdminDataFilter(request.GET, queryset=datas)
     datas = datafilter.qs
     a0000 = datas.filter(time__range=['00:00:00', '01:00:00']).count()
@@ -314,6 +325,7 @@ def admin_data(request):
                 'a2100':a2100,
                 'a2200':a2200,
                 'a2300':a2300,
-                'datafilter':datafilter
+                'datafilter':datafilter,
+                'profile':profile,
                 }
-    return render(request, 'user/admin_data.html', context)
+    return render(request, 'user/admin_data_detail.html', context)

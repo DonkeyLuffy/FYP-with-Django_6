@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <title>Balancer Buddy</title>
+    <style>
+        table {
+          border-collapse: collapse;
+          border-spacing: 0;
+          width: 100%;
+          border: 1px solid #ddd;
+        }
+        
+        th {
+          text-align: left;
+          padding: 15px;
+          margin: 10px;
+          border: 5px solid black;
+
+        }
+        td {
+            text-align: left;
+            height: 20px;
+            margin: 10px;
+            padding: 50px;
+            border: 5px solid black;
+        }   
+        
+    </style>
+
+</head>
+<body class="body">
+    {% include 'user/navbar.html' %}
+    <div class="row mx-0 ">
+        <div class="row mt-2 rounded color">
+            <div class="col-10 profile_content py-2" style="margin: auto;">
+                <div class="row">
+                    <div class="col-1">
+                        <a href="{% url 'user:admin_data' %}" class="btn btn-lg btn-warning">Back</a>
+                    </div>
+                    <div class="col-11 text-center">
+                        <h1><u>Data Visualistion</u></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-11 profile_content my-4 h5" style="width: fit-content; margin: auto;">
+            <div class="row text-center">
+                <h1><u>Search Content</u></h1>
+            </div>
+            <div class="row py-2">
+                <form action="" method="get">
+                    <label for="">User:</label>
+                    <input type="email" name="" id="" value="{{profile.user.get_full_name}}" placeholder="readonly">
+                    {{datafilter.form}}
+                    <button type="submit" class="btn btn-success border border-dark" style="color: black;"><i class="bi bi-search"></i></button>
+                    <a accesskey="backspace" type="reset" class="btn btn-danger border border-dark" style="color: black;"href="{% url 'user:admin_data' %}"><i class="bi bi-arrow-counterclockwise"></i></i></a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="mx-0 profile_content">
+        <div class="row">
+            <h1>Boolean Cluster</h1>
+        </div>
+        <hr>
+
+        <div style="overflow-x: auto;">
+            <table class="h6">
+                <tr>
+                    <td>Heel</td>
+                    {% for data in datas %}
+                        {% if data.heel %}
+                        <td style="background-color: green; color: green;">{{data.heel}}</td>
+                        {% else %}
+                        <td style="background-color: red;"></td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+        
+                <tr>
+                    <td>Big Toe</td>
+                    {% for data in datas %}
+                        {% if data.bigtoe %}
+                        <td style="background-color: green; color: green;">{{data.bigtoe}}</td>
+                        {% else %}
+                        <td style="background-color: red;"></td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th>time</th>
+                    {% for data in datas %}
+                        <th>{{data.time |date:"g:i:s a" }}</th>
+                    {% endfor %}
+                </tr>
+            </table>
+            </div>
+    </div>
+    
+    <div class="row mx-0 mt-2 profile_content" style="overflow-x: auto;">
+        <div>
+            <h1>Total Actuations per Hour</h1>
+        </div>
+        <hr>
+
+        <div class="row mx-3">
+            <div class="col-1 border border-dark border-5">
+                <h5>00:00</h5>
+            </div>
+            <div class="col-11">
+                <div style="background-color: yellowgreen; width: {{ a0000 }}px;" class="h5">
+                    {{ a0000 }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mx-3">
+            <div class="col-1 border border-dark border-5">
+                <h5>01:00</h5>
+            </div>
+            <div class="col-11">
+                <div style="background-color: yellowgreen; width: {{ a0100 }}px;" class="h5">
+                    {{ a0100 }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mx-3">
+            <div class="col-1 border border-dark border-5">
+                <h5>02:00</h5>
+            </div>
+            <div class="col-11">
+                <div style="background-color: yellowgreen; width: {{ a0200 }}px;" class="h5">
+                    {{ a0200 }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mx-3">
+            <div class="col-1 border border-dark border-5">
+                <h5>03:00</h5>
+            </div>
+            <div class="col-11 px-0">
+                <div style="background-color: yellowgreen; width: {{ a0300 }}px;" class="h5">
+                    {{ a0300 }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mx-3">
+            <div class="col-1 border border-dark border-5">
+                <h5>04:00</h5>
+            </div>
+            <div class="col-11 px-0">
+                <div style="background-color: yellowgreen; width: {{ a0400 }}px;" class="h5">
+                    {{ a0400 }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mx-3">
+            <div class="col-1 border border-dark border-5">
+                <h5>05:00</h5>
+            </div>
+            <div class="col-11 px-0">
+                <div style="background-color: yellowgreen; width: {{ a0500 }}px;" class="h5">
+                    {{ a0500 }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mx-3">
+            <div class="col-1 border border-dark border-5">
+                <h5>06:00</h5>
+            </div>
+            <div class="col-11 px-0">
+                <div style="background-color: yellowgreen; width:  {{ a0600 }}px;" class="h5">
+                    {{ a0600 }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mx-3">
+            <div class="col-1 border border-dark border-5">
+                <h5>07:00</h5>
+            </div>
+            <div class="col-11 px-0">
+                <div style="background-color: yellowgreen; width: {{ a0700 }}px;" class="h5">
+                    {{ a0700 }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mx-3">
+            <div class="col-1 border border-dark border-5">
+                <h5>08:00</h5>
+            </div>
+            <div class="col-11 px-0">
+                <div style="background-color: yellowgreen; width: {{ a0800 }}px;" class="h5">
+                    {{ a0800 }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mx-3">
+            <div class="col-1 border border-dark border-5">
+                <h5>09:00</h5>
+            </div>
+            <div class="col-11 px-0">
+                <div style="background-color: yellowgreen; width: {{ a1000 }}px;" class="h5">
+                    {{ a1000 }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mx-3">
+            <div class="col-1 border border-dark border-5">
+                <h5>11:00</h5>
+            </div>
+            <div class="col-11 px-0">
+                <div style="background-color: yellowgreen; width: {{ a1100 }}px;" class="h5">
+                    {{ a1100 }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mx-3">
+            <div class="col-1 border border-dark border-5">
+                <h5>12:00</h5>
+            </div>
+            <div class="col-11 px-0">
+                <div style="background-color: yellowgreen; width: {{ a1200 }}px;" class="h5">
+                    {{ a1200 }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mx-3">
+            <div class="col-1 border border-dark border-5">
+                <h5>13:00</h5>
+            </div>
+            <div class="col-11 px-0">
+                <div style="background-color: yellowgreen; width: {{ a1300 }}px;" class="h5">
+                    {{ a1300 }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mx-3">
+            <div class="col-1 border border-dark border-5">
+                <h5>14:00</h5>
+            </div>
+            <div class="col-11 px-0">
+                <div style="background-color: yellowgreen; width: {{ a1400 }}px;" class="h5">
+                    {{ a1400 }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mx-3">
+            <div class="col-1 border border-dark border-5">
+                <h5>15:00</h5>
+            </div>
+            <div class="col-11 px-0">
+                <div style="background-color: yellowgreen; width: {{ a1500 }}px;" class="h5">
+                    {{ a1500 }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mx-3">
+            <div class="col-1 border border-dark border-5">
+                <h5>16:00</h5>
+            </div>
+            <div class="col-11 px-0">
+                <div style="background-color: yellowgreen; width: {{ a1600 }}px;" class="h5">
+                    {{ a1600 }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mx-3">
+            <div class="col-1 border border-dark border-5">
+                <h5>17:00</h5>
+            </div>
+            <div class="col-11 px-0">
+                <div style="background-color: yellowgreen; width: {{ a1700 }}px;" class="h5">
+                    {{ a1700 }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mx-3">
+            <div class="col-1 border border-dark border-5">
+                <h5>18:00</h5>
+            </div>
+            <div class="col-11 px-0">
+                <div style="background-color: yellowgreen; width: {{ a1800 }}px;" class="h5">
+                    {{ a1800 }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mx-3">
+            <div class="col-1 border border-dark border-5">
+                <h5>19:00</h5>
+            </div>
+            <div class="col-11 px-0">
+                <div style="background-color: yellowgreen; width: {{ a1900 }}px;" class="h5">
+                    {{ a1900 }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mx-3">
+            <div class="col-1 border border-dark border-5">
+                <h5>20:00</h5>
+            </div>
+            <div class="col-11 px-0">
+                <div style="background-color: yellowgreen; width: {{ a2000 }}px;" class="h5">
+                    {{ a2000 }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mx-3">
+            <div class="col-1 border border-dark border-5">
+                <h5>21:00</h5>
+            </div>
+            <div class="col-11 px-0">
+                <div style="background-color: yellowgreen; width: {{ a2100 }}px;" class="h5">
+                    {{ a2100 }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mx-3">
+            <div class="col-1 border border-dark border-5">
+                <h5>22:00</h5>
+            </div>
+            <div class="col-11 px-0">
+                <div style="background-color: yellowgreen; width: {{ a2200 }}px;" class="h5">
+                    {{ a2200 }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mx-3">
+            <div class="col-1 border border-dark border-5">
+                <h5>23:00</h5>
+            </div>
+            <div class="col-11 px-0">
+                <div style="background-color: yellowgreen; width: {{ a2300 }}px;" class="h5">
+                    {{ a2300 }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+    
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</html>

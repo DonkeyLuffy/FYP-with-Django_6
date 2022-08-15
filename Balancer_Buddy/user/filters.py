@@ -39,4 +39,5 @@ class AdminDataFilter(django_filters.FilterSet):
     class Meta:
         model = DeviceData
         fields = '__all__'
+        exclude = ['user']
         

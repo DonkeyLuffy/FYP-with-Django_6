@@ -9,7 +9,7 @@
                 <a href="{% url 'user:home_page' %}" class="btn btn-lg btn-warning">Back</a>
             </div>
             <div class="col-10 d-flex justify-content-center">
-                <h1><u>Profile Information</u></h1>
+                <h1><u>Device Page</u></h1>
             </div>
             <div class="col-1"></div>
         </div>
@@ -17,7 +17,7 @@
 
     <div class="row d-flex flex-row justify-content-center mx-0">
         <div class=" col-2 my-2 profile_content p-2">
-            <h1>Heel</h1>
+            <h1 class="text-center">'Device'</h1>
             <form action="" method="post">
                 {% csrf_token %}
                 <p>
@@ -61,7 +61,6 @@
                     <th>Big Toe</th>
                     <th>Date</th>
                     <th>Time</th>
-                    <th></th>
                 </tr>
                 {% for data in datas %}
                 <tr>
@@ -69,7 +68,6 @@
                     <td>{{ data.bigtoe}}</td>
                     <td>{{ data.date}}</td>
                     <td>{{ data.time |date:"g:i:s a"}}</td>
-                    <td><a href="" class="btn btn-danger">Delete</a></td>
                 </tr>
                 {% endfor %}
             </table>

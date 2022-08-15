@@ -3,13 +3,18 @@
 {% block content %}
 <body class="body">
     {% include 'user/navbar.html' %}
-    <div class="row mx-0 ">
+    <div class="row mx-0">
         <div class="col-1 my-4">
-            <a href="{% url 'user:home_page' %}" class="btn btn-lg btn-warning border border-dark">Back Home</a>
         </div>
         <div class="col-11 profile_content my-4" style="width: fit-content;">
-            <div class="row text-center">
-                <h1><u>Search Content</u></h1>
+            <div class="row text-center mt-2">
+                <div class="col-2">
+                    <a href="{% url 'user:home_page' %}" class="btn btn-lg btn-warning border border-dark">Back Home</a>
+
+                </div>
+                <div class="col-10">
+                    <h1><u>Profile Content</u></h1>
+                </div>
             </div>
             <div class="row p-2" style="font-weight: 500;">
                 <form action="" method="get">

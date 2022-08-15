@@ -23,5 +23,5 @@ urlpatterns = [
     path('device/', views.device_page, name='device_page'),
     path('data/', views.data_page, name='data'),
     path('admin_data/', views.admin_data, name='admin_data'),
-    path('data/<int:pk>', views.data_delete, name='data_delete'),
+    path('admin_data/<int:pk>', views.admin_data_detail, name='admin_data_detail'),
 ]
