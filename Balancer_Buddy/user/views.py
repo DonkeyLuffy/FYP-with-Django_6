@@ -47,34 +47,37 @@ def login_page(request):
         username = request.POST.get('username')
         password =request.POST.get('password')
         user = authenticate(request, username=username, password=password)
-        group =CustomUser.objects.filter(groups=1,) 
-            
+        group1 = CustomUser.objects.filter(groups=1,) 
+        group2 = CustomUser.objects.filter(groups=2,) 
+        
+        
 
-        if user is not None:
+        if user is not None and user in group1:
             auth_login(request, user)
 
             dateTimeObj = datetime.now()
             today = dateTimeObj.strftime("%Y-%m-%d")   
             user = request.user.id
-            if user in group:
-                try:
-                    orgs = Profile.objects.filter(user__id=user, birth_date=today)
-                    orgs2 = Profile.objects.filter( birth_date=today, weight=None, phone_number=None, shoe_size=None) 
-                    if not orgs:
-                        Profile.objects.create(user_id=user)
-                        print('Need to profile register')
-                        return redirect('user:profile_create')
-                    if orgs2:
-                        print('Profile is empty')
-                        return redirect('user:profile_create')
-                except:
-                    print('Dont need to profile register')
+            try:
+                orgs = Profile.objects.filter(user__id=user, birth_date=today)
+                orgs2 = Profile.objects.filter( birth_date=today, weight=None, phone_number=None, shoe_size=None) 
+                if not orgs:
+                    Profile.objects.create(user_id=user)
+                    print('Need to profile register')
+                    return redirect('user:profile_create')
+                if orgs2:
+                    print('Profile is empty')
+                    return redirect('user:profile_create')
+            except:
+                print('Dont need to profile register')
 
                 messages.success(request,  'Successfully logged in.')
                 return redirect('user:home_page')
-            elif user not in group:
+            
+        elif user is not None and user in group2:
                 messages.success(request,  'Successfully logged in.')
                 return redirect('user:home_page')
+            
         else:
             messages.info(request, 'Username OR password is incorrect')
 
@@ -194,35 +197,35 @@ def device_page(request):
     return render(request, 'user/device.html', context)
 
 def data_page(request):
-    datas = DeviceData.objects.filter(date=today, user_id=request.user.id)
+    datas = DeviceData.objects.filter(date=today).filter(user_id=request.user.id)
     print()
     datafilter = DeviceDataFilter(request.GET, queryset=datas)
     datas = datafilter.qs
-    a0000 = DeviceData.objects.filter(time__range=['00:00:00', '01:00:00']).count()
-    a0100 = DeviceData.objects.filter(time__range=['01:00:00', '02:00:00']).count()
-    a0200 = DeviceData.objects.filter(time__range=['02:00:00', '03:00:00']).count()
-    a0300 = DeviceData.objects.filter(time__range=['03:00:00', '03:00:00']).count()
-    a0400 = DeviceData.objects.filter(time__range=['04:00:00', '05:00:00']).count()
-    a0500 = DeviceData.objects.filter(time__range=['05:00:00', '05:00:00']).count()
-    a0600 = DeviceData.objects.filter(time__range=['06:00:00', '07:00:00']).count()
-    a0700 = DeviceData.objects.filter(time__range=['07:00:00', '08:00:00']).count()
-    a0800 = DeviceData.objects.filter(time__range=['08:00:00', '09:00:00']).count()
-    a0800 = DeviceData.objects.filter(time__range=['08:00:00', '09:00:00']).count()
-    a0900 = DeviceData.objects.filter(time__range=['09:00:00', '10:00:00']).count()
-    a1000 = DeviceData.objects.filter(time__range=['10:00:00', '11:00:00']).count()
-    a1100 = DeviceData.objects.filter(time__range=['11:00:00', '12:00:00']).count()
-    a1200 = DeviceData.objects.filter(time__range=['12:00:00', '13:00:00']).count()
-    a1300 = DeviceData.objects.filter(time__range=['13:00:00', '14:00:00']).count()
-    a1400 = DeviceData.objects.filter(time__range=['14:00:00', '15:00:00']).count()
-    a1500 = DeviceData.objects.filter(time__range=['15:00:00', '16:00:00']).count()
-    a1600 = DeviceData.objects.filter(time__range=['16:00:00', '17:00:00']).count()
-    a1700 = DeviceData.objects.filter(time__range=['17:00:00', '18:00:00']).count()
-    a1800 = DeviceData.objects.filter(time__range=['18:00:00', '19:00:00']).count()
-    a1900 = DeviceData.objects.filter(time__range=['19:00:00', '20:00:00']).count()
-    a2000 = DeviceData.objects.filter(time__range=['20:00:00', '21:00:00']).count()
-    a2100 = DeviceData.objects.filter(time__range=['21:00:00', '22:00:00']).count()
-    a2200 = DeviceData.objects.filter(time__range=['22:00:00', '23:00:00']).count()
-    a2300 = DeviceData.objects.filter(time__range=['23:00:00', '00:00:00']).count()
+    a0000 = datas.filter(time__range=['00:00:00', '01:00:00']).count()
+    a0200 = datas.filter(time__range=['02:00:00', '03:00:00']).count()
+    a0300 = datas.filter(time__range=['03:00:00', '03:00:00']).count()
+    a0100 = datas.filter(time__range=['01:00:00', '02:00:00']).count()
+    a0400 = datas.filter(time__range=['04:00:00', '05:00:00']).count()
+    a0500 = datas.filter(time__range=['05:00:00', '05:00:00']).count()
+    a0600 = datas.filter(time__range=['06:00:00', '07:00:00']).count()
+    a0700 = datas.filter(time__range=['07:00:00', '08:00:00']).count()
+    a0800 = datas.filter(time__range=['08:00:00', '09:00:00']).count()
+    a0800 = datas.filter(time__range=['08:00:00', '09:00:00']).count()
+    a0900 = datas.filter(time__range=['09:00:00', '10:00:00']).count()
+    a1000 = datas.filter(time__range=['10:00:00', '11:00:00']).count()
+    a1100 = datas.filter(time__range=['11:00:00', '12:00:00']).count()
+    a1200 = datas.filter(time__range=['12:00:00', '13:00:00']).count()
+    a1300 = datas.filter(time__range=['13:00:00', '14:00:00']).count()
+    a1400 = datas.filter(time__range=['14:00:00', '15:00:00']).count()
+    a1500 = datas.filter(time__range=['15:00:00', '16:00:00']).count()
+    a1600 = datas.filter(time__range=['16:00:00', '17:00:00']).count()
+    a1700 = datas.filter(time__range=['17:00:00', '18:00:00']).count()
+    a1800 = datas.filter(time__range=['18:00:00', '19:00:00']).count()
+    a1900 = datas.filter(time__range=['19:00:00', '20:00:00']).count()
+    a2000 = datas.filter(time__range=['20:00:00', '21:00:00']).count()
+    a2100 = datas.filter(time__range=['21:00:00', '22:00:00']).count()
+    a2200 = datas.filter(time__range=['22:00:00', '23:00:00']).count()
+    a2300 = datas.filter(time__range=['23:00:00', '00:00:00']).count()
 
     context = { 'datas': datas, 
                 'a0000': a0000, 

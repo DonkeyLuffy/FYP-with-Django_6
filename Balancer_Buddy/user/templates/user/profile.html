@@ -53,7 +53,7 @@
                         <td>{{profile.age}}</td>
                         <td>{{profile.weight}} Kg</td>
                         <td>{{profile.shoe_size}} ({{profile.size_type}}) </td>
-                        <td><a href="{% url 'user:profile_detail' profile.id %}" class="btn btn-primary border border-dark">View</a></td>
+                        <td><a href="{% url 'user:profile_detail' profile.user_id %}" class="btn btn-primary border border-dark">View</a></td>
                     </tr>
                     {%endfor%}
 

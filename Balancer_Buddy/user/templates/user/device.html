@@ -20,16 +20,38 @@
             <h1>Heel</h1>
             <form action="" method="post">
                 {% csrf_token %}
-                {{form.as_p}}
+                <p>
+                    <label for="id_user">User:</label>
+                    <select name="user" required id="id_user">
+                        <option value="">---------</option>
+                        <option value="{{request.user.id}}" selected>{{request.user}}</option>    
+                    </select>
+                </p>
+
+                <p>
+                    <label for="id_heel">Heel:</label>
+                    <select name="heel" class="form-control" id="id_heel">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </p>
+
+                <p>
+                    <label for="id_bigtoe">Bigtoe:</label>
+                    <select name="bigtoe" class="form-control" id="id_bigtoe">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </p>
                 <input type="submit" value="Submit">
             </form>
         </div>
     </div>
 
 
-    <div class="container">
+    <div class="container ">
         <div class="row card card-body">
-            <table class="table table-md h5">
+            <table class="table table-md h5 ">
                 <tr class="text-center">
                     <h1>Datalog</h1>
                     <h3>Entry Count: {{count}}</h3>
